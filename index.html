@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lodziarnia rzemieślnicza Kielce | Własna produkcja lodów | Limonka & Truskawka</title>
+  <meta name="description" content="Limonka & Truskawka to lodziarnia rzemieślnicza w Kielcach z własną produkcją lodów. Naturalne lody rzemieślnicze, lokalizacje w Kielcach oraz sprzedaż hurtowa lodów dla gastronomii i eventów w województwie świętokrzyskim." />
+  <style>
+    :root{
+      --dark:#101010;
+      --cream:#fff8ed;
+      --green:#75c943;
+      --pink:#ff3fa5;
+      --lime:#d9ff70;
+      --muted:#6f6b66;
+      --card:#ffffff;
+      --shadow: 0 24px 70px rgba(0,0,0,.16);
+      --radius: 28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:var(--cream);
+      color:var(--dark);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img,video{max-width:100%;display:block}
+    .nav{
+      position:fixed;top:18px;left:50%;transform:translateX(-50%);
+      width:min(1160px, calc(100% - 28px));
+      z-index:20;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      padding:12px 16px;
+      background:rgba(16,16,16,.78);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    }
+    .brand{font-weight:900;letter-spacing:.2px}
+    .brand span:first-child{color:var(--green)}
+    .brand span:last-child{color:var(--pink)}
+    .links{display:flex;gap:18px;font-size:14px;align-items:center}
+    .links a{opacity:.9}
+    .nav-cta{background:linear-gradient(135deg,var(--green),var(--pink));padding:10px 16px;border-radius:999px;font-weight:800}
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:grid;
+      place-items:center;
+      padding:120px 20px 70px;
+      color:#fff;
+      background:#111;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.80),rgba(0,0,0,.25),rgba(0,0,0,.75));
+      z-index:1;
+    }
+    .hero:after{
+      content:"";position:absolute;inset:auto -8% -20% -8%;height:42%;
+      background:radial-gradient(circle,var(--pink),transparent 55%), radial-gradient(circle at 75% 20%,var(--green),transparent 45%);
+      filter:blur(70px);opacity:.45;z-index:1;
+    }
+    .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-content{position:relative;z-index:2;width:min(1160px,100%);display:grid;grid-template-columns:1.15fr .85fr;gap:42px;align-items:end}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 14px;font-weight:800;margin-bottom:18px}
+    h1{font-size:clamp(50px,8vw,112px);line-height:.9;margin:0 0 20px;letter-spacing:-5px}
+    .hero h1 span{display:block;color:var(--lime)}
+    .lead{font-size:clamp(18px,2.2vw,26px);line-height:1.35;max-width:760px;color:rgba(255,255,255,.88)}
+    .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 22px;border-radius:999px;font-weight:900;border:1px solid rgba(255,255,255,.22)}
+    .btn.primary{background:linear-gradient(135deg,var(--green),var(--pink));color:#fff;border:0}
+    .btn.light{background:rgba(255,255,255,.12);color:#fff}
+    .hero-card{
+      background:rgba(255,255,255,.12);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .hero-card strong{font-size:34px}
+    .hero-card p{color:rgba(255,255,255,.82);line-height:1.6}
+    section{padding:100px 20px}
+    .wrap{width:min(1160px,100%);margin:0 auto}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}
+    .kicker{font-weight:950;color:var(--pink);text-transform:uppercase;letter-spacing:.14em;font-size:13px}
+    h2{font-size:clamp(36px,5vw,70px);line-height:.95;letter-spacing:-3px;margin:10px 0}
+    .section-head p,.text p{font-size:18px;color:var(--muted);line-height:1.75;max-width:650px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+    .photo-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#fff;position:relative}
+    .photo-card img{width:100%;height:620px;object-fit:cover}
+    .photo-card.small img{height:470px}
+    .badge{
+      position:absolute;left:22px;bottom:22px;
+      background:#fff;border-radius:999px;padding:12px 18px;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.2)
+    }
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+    .feature{background:#fff;border-radius:22px;padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.06)}
+    .feature b{display:block;font-size:18px;margin-bottom:8px}
+    .feature p{margin:0;color:var(--muted);line-height:1.55}
+    .video-section{background:#111;color:#fff;position:relative;overflow:hidden}
+    .video-section:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 20% 30%,rgba(117,201,67,.32),transparent 35%),radial-gradient(circle at 80% 30%,rgba(255,63,165,.25),transparent 35%);}
+    .video-section .wrap{position:relative;z-index:1}
+    .video-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:22px;align-items:stretch}
+    .video-box,.side-img{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#000}
+    video{width:100%;height:680px;object-fit:cover}
+    .side-img img{width:100%;height:680px;object-fit:cover}
+    .flavors{background:#fff}
+    .flavor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .flavor{position:relative;overflow:hidden;border-radius:28px;min-height:390px;background:#eee;box-shadow:0 16px 45px rgba(0,0,0,.10)}
+    .flavor img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .45s ease}
+    .flavor:hover img{transform:scale(1.07)}
+    .flavor span{position:absolute;left:18px;bottom:18px;background:#fff;border-radius:999px;padding:11px 16px;font-weight:950}
+    .why{background:linear-gradient(180deg,#fff,var(--cream))}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .why-card{background:#fff;border-radius:26px;padding:30px;box-shadow:0 14px 45px rgba(0,0,0,.07);min-height:190px}
+    .why-card .icon{font-size:32px}
+    .why-card h3{font-size:24px;margin:18px 0 10px}
+    .why-card p{color:var(--muted);line-height:1.6;margin:0}
+    .locations{background:#111;color:#fff}
+    .locations .section-head p{color:rgba(255,255,255,.72)}
+    .loc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .loc{background:#1c1c1c;border:1px solid rgba(255,255,255,.1);border-radius:28px;overflow:hidden}
+    .loc img{height:280px;width:100%;object-fit:cover}
+    .loc-body{padding:24px}
+    .loc-body h3{font-size:28px;margin:0 0 8px}
+    .loc-body p{color:rgba(255,255,255,.72);margin:0 0 18px}
+    iframe{width:100%;height:220px;border:0;filter:grayscale(.15);border-radius:18px}
+    .map-link{display:inline-flex;background:#fff;color:#111;padding:12px 16px;border-radius:999px;font-weight:900;margin-top:16px}
+    .b2b{background:var(--cream)}
+    .b2b-hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;background:#111;color:#fff;border-radius:40px;overflow:hidden;box-shadow:var(--shadow)}
+    .b2b-hero img{height:660px;width:100%;object-fit:cover}
+    .b2b-copy{padding:50px}
+    .b2b-copy h2{color:#fff}
+    .b2b-copy p{color:rgba(255,255,255,.78);font-size:18px;line-height:1.75}
+    .b2b-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .b2b-tags span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:10px 14px;border-radius:999px;font-weight:800}
+    .seo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+    .seo-card{background:#fff;border-radius:24px;padding:26px;box-shadow:0 12px 40px rgba(0,0,0,.06)}
+    .seo-card h3{font-size:24px;margin:0 0 10px}
+    .seo-card p{line-height:1.65;color:var(--muted)}
+    .contact{background:#fff}
+    .contact-card{display:grid;grid-template-columns:1fr 1fr;border-radius:40px;overflow:hidden;background:#111;color:#fff;box-shadow:var(--shadow)}
+    .contact-card img{height:560px;width:100%;object-fit:cover}
+    .contact-copy{padding:54px}
+    .contact-copy p{font-size:19px;color:rgba(255,255,255,.75);line-height:1.7}
+    footer{background:#111;color:rgba(255,255,255,.68);padding:34px 20px;text-align:center;font-size:14px}
+    @media(max-width:900px){
+      .links{display:none}
+      .hero-content,.split,.video-grid,.b2b-hero,.contact-card{grid-template-columns:1fr}
+      .features,.why-grid,.seo-grid,.flavor-grid,.loc-grid{grid-template-columns:1fr}
+      video,.side-img img,.photo-card img,.b2b-hero img,.contact-card img{height:auto}
+      h1{letter-spacing:-3px}
+      section{padding:70px 18px}
+      .section-head{display:block}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#"><span>Limonka</span> & <span>Truskawka</span></a>
+    <div class="links">
+      <a href="#onas">O nas</a>
+      <a href="#smaki">Smaki</a>
+      <a href="#lokalizacje">Lokalizacje</a>
+      <a href="#b2b">Hurt B2B</a>
+      <a href="#kontakt" class="nav-cta">Kontakt</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img class="hero-bg" src="assets/sorbet-malina-logo.jpg" alt="Naturalne lody rzemieślnicze Limonka i Truskawka w Kielcach">
+    <div class="hero-content">
+      <div>
+        <div class="eyebrow">🍦 Lodziarnia rzemieślnicza Kielce • własna produkcja lodów</div>
+        <h1>Smak lata <span>przez cały sezon</span></h1>
+        <p class="lead">Limonka & Truskawka to lodziarnia rzemieślnicza w Kielcach, w której stawiamy na własną produkcję lodów, świeże składniki i autorskie receptury.</p>
+        <div class="actions">
+          <a class="btn primary" href="#smaki">Poznaj nasze smaki</a>
+          <a class="btn light" href="#lokalizacje">Znajdź najbliższy punkt</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <strong>4 lokalizacje</strong>
+        <p>Znajdziesz nas w kilku punktach Kielc. Wpadnij po gałkę, kubek albo porcję lodów na rodzinny spacer.</p>
+        <a class="btn light" href="#b2b">Oferta dla firm</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="onas">
+    <div class="wrap split">
+      <div class="text">
+        <div class="kicker">O nas</div>
+        <h2>Lodziarnia rzemieślnicza z własną produkcją lodów w Kielcach.</h2>
+        <p>Limonka & Truskawka to lodziarnia rzemieślnicza w Kielcach, w której naturalne lody powstają w oparciu o własną produkcję, codzienną pracę i dbałość o smak, konsystencję oraz jakość. Stawiamy na składniki, sezonowe inspiracje i receptury, które wyróżniają się już od pierwszej łyżeczki.</p>
+        <div class="features">
+          <div class="feature"><b>Świeże składniki</b><p>Owoce, nabiał i dodatki wybierane z troską o smak.</p></div>
+          <div class="feature"><b>Rzemiosło</b><p>Każda partia powstaje z uwagą i doświadczeniem.</p></div>
+          <div class="feature"><b>Autorskie smaki</b><p>Klasyka, sorbety i sezonowe kompozycje.</p></div>
+        </div>
+      </div>
+      <div class="photo-card small">
+        <img src="assets/rzemieslnik-skladniki.jpeg" alt="Rzemieślnicza produkcja lodów i naturalne składniki">
+        <div class="badge">Prawdziwa produkcja</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section" id="produkcja">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Kulisy produkcji</div>
+          <h2>Zobacz jak powstają nasze lody</h2>
+        </div>
+        <p>Najlepszy smak zaczyna się od dobrych składników i codziennej pracy. Film odtwarza się bez dźwięku.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-box">
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/film-produkcja-lodow.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="side-img">
+          <img src="assets/produkcja-lody-maszyna.jpeg" alt="Świeżo ukręcone lody przy maszynie">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flavors" id="smaki">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Nasze smaki</div>
+          <h2>Kolorowe, świeże i robione po naszemu.</h2>
+        </div>
+        <p>Codziennie czekają klasyczne smaki, owocowe sorbety i sezonowe kompozycje. Dostępność smaków może zmieniać się w zależności od dnia.</p>
+      </div>
+      <div class="flavor-grid">
+        <div class="flavor"><img src="assets/smak-cytryna-logo.jpg" alt="Lody cytrynowe"><span>Cytryna</span></div>
+        <div class="flavor"><img src="assets/smak-marakuja.jpg" alt="Lody marakuja"><span>Marakuja</span></div>
+        <div class="flavor"><img src="assets/hero-malina-logo.jpg" alt="Sorbet malinowy"><span>Malina</span></div>
+        <div class="flavor"><img src="assets/lokal-kubek-pomarancza.jpg" alt="Owocowe lody w kubku"><span>Owocowe sezonowe</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Dlaczego my</div>
+          <h2>Dlaczego klienci wracają?</h2>
+        </div>
+        <p>Na stronie warto mówić językiem opinii klientów: smak, jakość, duże porcje, miła obsługa i lokalizacje blisko domu.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="icon">🌿</div><h3>Naturalne składniki</h3><p>Proste kompozycje, świeże owoce i jakość, którą czuć w smaku.</p></div>
+        <div class="why-card"><div class="icon">👨‍🍳</div><h3>Produkcja na miejscu</h3><p>Pokazujemy proces, bo autentyczność buduje największe zaufanie.</p></div>
+        <div class="why-card"><div class="icon">⭐</div><h3>Pozytywne opinie</h3><p>Klienci chwalą smak, porcje, wybór i obsługę.</p></div>
+        <div class="why-card"><div class="icon">🍓</div><h3>Sezonowe smaki</h3><p>Nowe połączenia i owocowe sorbety idealne na ciepłe dni.</p></div>
+        <div class="why-card"><div class="icon">📍</div><h3>Kilka punktów</h3><p>Wybierz najbliższą lokalizację w Kielcach i wpadnij na lody.</p></div>
+        <div class="why-card"><div class="icon">🍦</div><h3>Rzemieślniczy charakter</h3><p>Lody tworzone z pasją, nie anonimowy produkt z hurtowni.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="why" id="seo-lokalne">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Lokalnie w Kielcach</div>
+          <h2>Lodziarnia rzemieślnicza Kielce — własna produkcja, prawdziwy smak.</h2>
+        </div>
+        <p>Nasze lody tworzymy z myślą o klientach, którzy szukają w Kielcach lodziarni rzemieślniczej z własną produkcją, naturalnymi składnikami i autorskimi smakami.</p>
+      </div>
+      <div class="seo-grid">
+        <div class="seo-card">
+          <h3>Lodziarnia rzemieślnicza Kielce</h3>
+          <p>Zapraszamy do naszych punktów w Kielcach na naturalne lody rzemieślnicze, owocowe sorbety i sezonowe smaki.</p>
+        </div>
+        <div class="seo-card">
+          <h3>Lodziarnia własna produkcja Kielce</h3>
+          <p>Pokazujemy kulisy pracy, bo wierzymy, że własna produkcja lodów i jakość składników mają bezpośredni wpływ na smak.</p>
+        </div>
+        <div class="seo-card">
+          <h3>Naturalne lody rzemieślnicze</h3>
+          <p>Tworzymy lody dla rodzin, spacerowiczów i wszystkich, którzy lubią prawdziwy, intensywny smak.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations" id="lokalizacje">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Nasze lokalizacje</div>
+          <h2>Znajdź najbliższą Limonkę & Truskawkę</h2>
+        </div>
+        <p>Każdy punkt ma mapkę Google i przycisk do nawigacji.</p>
+      </div>
+      <div class="loc-grid">
+        <div class="loc">
+          <img src="assets/lokal-malina-logo.jpg" alt="Lodziarnia Limonka i Truskawka punkt">
+          <div class="loc-body">
+            <h3>Klonowa</h3><p>ul. Klonowa 37A, Kielce</p>
+            <iframe loading="lazy" src="https://www.google.com/maps?q=Klonowa+37A+Kielce&output=embed"></iframe>
+            <a class="map-link" target="_blank" href="https://maps.google.com/?q=Klonowa+37A+Kielce">Nawiguj</a>
+          </div>
+        </div>
+        <div class="loc">
+          <img src="assets/lokal-wafelek.jpg" alt="Lody przed lokalem Limonka i Truskawka">
+          <div class="loc-body">
+            <h3>Orzeszkowa</h3><p>ul. Elizy Orzeszkowej 15, Kielce</p>
+            <iframe loading="lazy" src="https://www.google.com/maps?q=Elizy+Orzeszkowej+15+Kielce&output=embed"></iframe>
+            <a class="map-link" target="_blank" href="https://maps.google.com/?q=Elizy+Orzeszkowej+15+Kielce">Nawiguj</a>
+          </div>
+        </div>
+        <div class="loc">
+          <img src="assets/lokal-wafelek2.jpg" alt="Lody rzemieślnicze przy wejściu do lokalu">
+          <div class="loc-body">
+            <h3>Piłsudskiego</h3><p>al. Piłsudskiego 40, Kielce</p>
+            <iframe loading="lazy" src="https://www.google.com/maps?q=Pi%C5%82sudskiego+40+Kielce&output=embed"></iframe>
+            <a class="map-link" target="_blank" href="https://maps.google.com/?q=Pi%C5%82sudskiego+40+Kielce">Nawiguj</a>
+          </div>
+        </div>
+        <div class="loc">
+          <img src="assets/lokal-kubek-pomarancza.jpg" alt="Lody w kubku przed lodziarnią">
+          <div class="loc-body">
+            <h3>Jurajska</h3><p>ul. Jurajska 1B, Kielce</p>
+            <iframe loading="lazy" src="https://www.google.com/maps?q=Jurajska+1B+Kielce&output=embed"></iframe>
+            <a class="map-link" target="_blank" href="https://maps.google.com/?q=Jurajska+1B+Kielce">Nawiguj</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="b2b" id="b2b">
+    <div class="wrap">
+      <div class="b2b-hero">
+        <img src="assets/rzemieslnik-skladniki.jpeg" alt="Producent lodów rzemieślniczych dla gastronomii">
+        <div class="b2b-copy">
+          <div class="kicker">Hurt B2B</div>
+          <h2>Producent lodów rzemieślniczych dla gastronomii</h2>
+          <p>Oferujemy sprzedaż hurtową lodów w Kielcach i województwie świętokrzyskim. Współpracujemy z kawiarniami, cukierniami, restauracjami, hotelami oraz organizatorami eventów.</p>
+          <p>To idealna oferta dla firm, które szukają sprawdzonego dostawcy lodów, wysokiej jakości produktu i elastycznych warunków współpracy.</p>
+          <div class="b2b-tags">
+            <span>☕ Kawiarnie</span><span>🍰 Cukiernie</span><span>🍴 Restauracje</span><span>🎉 Eventy</span><span>🏨 Hotele</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="#kontakt">Zapytaj o ofertę B2B</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="seo-grid">
+        <div class="seo-card">
+          <h3>Sprzedaż hurtowa lodów Kielce</h3>
+          <p>Dostarczamy lody rzemieślnicze dla gastronomii w Kielcach: do kawiarni, cukierni, restauracji i punktów sezonowych.</p>
+        </div>
+        <div class="seo-card">
+          <h3>Hurt lodów Świętokrzyskie</h3>
+          <p>Obsługujemy partnerów z województwa świętokrzyskiego, oferując klasyczne i sezonowe smaki w stałej jakości.</p>
+        </div>
+        <div class="seo-card">
+          <h3>Lody na eventy</h3>
+          <p>Wesela, komunie, pikniki rodzinne, festyny i imprezy firmowe — przygotujemy ofertę dopasowaną do wydarzenia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="wrap contact-card">
+      <img src="assets/smak-cytryna-logo.jpg" alt="Cytrynowe lody Limonka i Truskawka">
+      <div class="contact-copy">
+        <div class="kicker">Kontakt</div>
+        <h2>Do zobaczenia przy ladzie 🍦</h2>
+        <p>Chcesz odwiedzić najbliższy punkt, zapytać o smaki albo porozmawiać o sprzedaży hurtowej lodów dla Twojego biznesu?</p>
+        <p><strong>Telefon:</strong> <a href="tel:+48534646667">534 646 667</a><br><strong>E-mail:</strong> <a href="mailto:limonkatruskawka@gmail.com">limonkatruskawka@gmail.com</a><br><strong>Social media:</strong> Facebook / Instagram</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:limonkatruskawka@gmail.com">Napisz do nas</a>
+          <a class="btn light" href="#lokalizacje">Sprawdź lokalizacje</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Limonka & Truskawka – lodziarnia rzemieślnicza Kielce, własna produkcja lodów i naturalne lody rzemieślnicze. Sprzedaż detaliczna i hurtowa lodów w Kielcach oraz województwie świętokrzyskim: lody dla kawiarni, cukierni, restauracji, hoteli i organizatorów eventów.
+  </footer>
+</body>
+</html>
